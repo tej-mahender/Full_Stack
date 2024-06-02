@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Kode Mono", monospace;
+}
+h2{
+    margin-top: 10px;
+    padding-left: 15px;
+}
+img{
+    width: 400px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.pics{
+    margin-top: -15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+p{
+    font-family: "Fredoka", sans-serif;
+    padding: 15px;
+}

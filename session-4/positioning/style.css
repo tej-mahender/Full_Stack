@@ -1,0 +1,27 @@
+.profile{
+    width: 300px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: yellow;
+    text-align: center;
+    position: sticky;
+    top: 10px;
+}
+.profile img{
+    width: 70%;
+    border-radius: 50%;
+}
+.profile .logo{
+    width: 50px;
+    bottom: -25px;
+    left: 150px;
+    position: absolute;
+}
+.logo2{
+    position: fixed;
+    bottom: 40px;
+    width: 50px;
+    right: 40px;
+}

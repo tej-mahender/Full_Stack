@@ -1,0 +1,46 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f8dbdb;
+}
+
+.fa {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    border-radius: 50%;
+    color: black;
+    border-color: gray;
+    border-width: 0.1px;
+    border-style: solid;
+    padding-top: 10px;
+  }
+.form-control{
+    background-color: rgb(217, 217, 217);
+}
+.side{
+    background-color: rgb(232, 47, 47);
+  }
+  .side h1{
+    margin-top: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .side p{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+button{
+    width: 125px;
+    background-color: rgb(232, 47, 47);
+    border-radius: 40px;
+    padding: 10px;
+    border-color: rgb(232, 47, 47);
+    text-align: center;
+    color:white;
+    margin-bottom: 50px;
+  }

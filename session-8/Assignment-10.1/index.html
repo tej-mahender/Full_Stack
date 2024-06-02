@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+   }
+   h1{
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 5px;
+   }
+   .res{
+    margin-top: 20px;
+   }
+   div{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+   }
+    .calci{
+    margin-top: 10px;
+    padding: 20px;
+    max-width:500px;
+    background-color: rgb(226, 217, 117);
+    border-radius: 10px;
+  }
+button{
+    padding: 10px;
+    justify-content: space-around;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+  input{
+    width: 100%;
+    padding: 10px;
+    margin:5px;
+    border-radius: 10px;
+  }
+    </style>
+</head>
+<body>
+    <div>
+    <form class="calci">
+        <h1>Simple Calculator</h1>
+        <input type="number" name="first" id="" placeholder="Enter 1st Number">
+        <input type="number" name="second" id="" placeholder="Enter 2nd Number">
+        <button type="submit" class="add">Add</button>
+        <button type="submit" class="sub">Sub</button>
+        <button type="submit" class="mul">Mul</button>
+        <button type="submit" class="div">Div</button>
+        <h1 class="res">Result</h1>
+    </form>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

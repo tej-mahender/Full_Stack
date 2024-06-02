@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="task3.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="entry" id="loginForm">
+            <!-- Login section -->
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="showCreateForm()">Create Account</a></p>
+        </div>
+        <div class="entry" id="createForm" style="display: none;">
+            <!-- Create account section -->
+            <input type="text" id="newUsername" placeholder="New Username">
+            <input type="password" id="newPassword" placeholder="New Password">
+            <button onclick="saveAccount()">Save</button>
+            <p>Already have an account? <a href="#" onclick="hideCreateForm()">Login</a></p>
+        </div>
+    </div>
+    <script src="task3.js"></script>
+</body>
+</html>

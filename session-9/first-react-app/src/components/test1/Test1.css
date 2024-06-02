@@ -1,0 +1,12 @@
+.person{
+    width: 400px;
+    border-radius: 5px;
+    background-color: beige;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 15px;
+    height: 400px;
+}
+img{
+    width:200px
+}

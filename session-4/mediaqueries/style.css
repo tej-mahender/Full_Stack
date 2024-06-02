@@ -1,0 +1,47 @@
+.main{
+    margin: auto;
+    background-color: rgb(78, 201, 205);
+    max-width: 1200px;
+    height: 600px;
+    text-align: center;
+}
+.main h1{
+    font-size: 4rem;
+}
+/* to make the image responsive */
+.main img{
+    max-width: 500px;
+    width: 100%;
+}
+/* using flex */
+.parent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    gap: 20px;
+}
+.block{
+    width: 300px;
+    background-color: bisque;
+    padding: 20px;
+    border-radius: 10px;
+}
+.block img{
+    width: 50%;
+    height: 200px;
+    border-radius: 50%;
+}
+@media screen and (max-width:576px){
+   .main h1{
+        font-size: 2rem;
+    }
+}
+@media screen and (min-width:577px) and (max-width:768px){
+    .main h1{
+        font-size: 3rem;
+    }
+}
+@media screen and (min-width:769px) and (max-width:992px){
+    
+}

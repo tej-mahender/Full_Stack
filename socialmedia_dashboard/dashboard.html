@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+    </header>
+    <div class="container">
+        <!-- Dashboard content -->
+        <h2>Your Social Media Links</h2>
+        <div id="socialMediaLinks">
+            <!-- Social media links input -->
+            <div class="socialMediaInput">
+                <input type="text" placeholder="Instagram Account Link" id="instagramLink" class="socialMediaInput">
+                <button onclick="addSocialMediaLink('Instagram')" id="instagramLinkImg">Save</button>
+            </div>
+            <div class="socialMediaInput">
+                <input type="text" placeholder="Snap Chat Account Link" id="instagramLink" class="socialMediaInput">
+                <button onclick="addSocialMediaLink('Snap Chat')" id="snapchatLinkImg">Save</button>
+            </div>
+            <div class="socialMediaInput">
+                <input type="text" placeholder="Twitter Account Link" id="instagramLink" class="socialMediaInput">
+                <button onclick="addSocialMediaLink('Twitter')" id="twitterLinkImg">Save</button>
+            </div> 
+            <div class="socialMediaInput">
+                <input type="text" placeholder="LinkedIn Account Link" id="instagramLink" class="socialMediaInput">
+                <button onclick="addSocialMediaLink('LinkedIn')" id="linkedinLinkImg">Save</button>
+            </div>
+            <div class="socialMediaInput">
+                <input type="text" placeholder="Facebook Account Link" id="instagramLink" class="socialMediaInput">
+                <button onclick="addSocialMediaLink('Facebook')" id="facebookLinkImg">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
