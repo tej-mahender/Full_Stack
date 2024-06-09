@@ -2,6 +2,7 @@ import './App.css';
 
 import Test1 from './components/test1/Test1';
 import Test2 from './components/test2/Test2';
+import Test3 from './components/test3/Test3';
 
 import { useState } from 'react';
 
@@ -141,6 +142,7 @@ function App(){
    </div>
 
    <Test2></Test2>
+   <Test3></Test3>
 
   </div>
   )

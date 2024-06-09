@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "6913",
+      "username": "admin",
+      "email": "tejmahender140@gmail.com",
+      "password": "asdfghjk"
+    },
+    {
+      "id": "2872",
+      "username": "qwertyu",
+      "email": "22501a05i5@pvpsit.ac.in",
+      "password": "12345"
+    }
+  ]
+}
