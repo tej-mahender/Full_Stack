@@ -16,7 +16,7 @@ function App() {
     <div className='mx-auto mt-5 bg-info w-75 p-4 text-center '>
       <h2>Parent</h2>
       <h3>Counter - {counter}</h3>
-      <Child data={{counter,Increment,Decrement}}/>
+      <Child data={{Increment,Decrement}}/>
     </div>
   )
 }
