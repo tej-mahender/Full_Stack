@@ -33,11 +33,11 @@ function Form() {
             <div className="row">
                 <div className="col">
                     <label className='form-label mt-3'>Birthday</label>
-                    <input type="date" className="form-control" name='birthday' {...register('birthday',{requied:true})} />
+                    <input type="date" className="form-control" name='birthday' {...register('birthday',{required:true})} />
                     {errors.birthday?.type==='required' && <p className='text-danger'>Birthday is required</p>}
                 </div>
                 <div className="col">
-                    <label htmlFor="" className="form-label mt-4">Gender</label>
+                    <label className="form-label mt-4">Gender</label>
                     <div className="row">
                     <div className="form-check col">
                         <input type="radio" className="form-check-input" name='gender' id='male' {...register('gender',{required:true})} />
@@ -58,21 +58,22 @@ function Form() {
                     {errors.email?.type==='required' && <p className='text-danger'>Email is required </p> } 
                 </div>
                 <div className="col">
-                    <label htmlFor="" className="form-label mt-3">Phone Number</label>
+                    <label className="form-label mt-3">Phone Number</label>
                     <input type="phone" className="form-control" name='phone' {...register('phone',{required:true,minLength:10,maxLength:10})}/>
                     {errors.phone?.type==='required' && <p className='text-danger'>Number is required</p>}
                     {errors.phone?.type==='minLength'&& <p className="text-danger">Number should be of 10 characters</p> }
                     {errors.phone?.type==='maxLength'&& <p className="text-danger">Number should be of 10 characters</p> }
                 </div>
             </div>
-            <label htmlFor="" className="form-label mt-3">Subject </label>
-            <select name="subject" id="" className='form-select'>
-                <option selected>Choose Option</option>
+            <label className="form-label mt-3">Subject </label>
+            <select name="subject" className='form-select' {...register('subject',{required:true})}>
+                <option value="">Choose Option</option>
                 <option value="math">Mathematics</option>
                 <option value="chem"> Chemistry</option>
                 <option value="phy">Physics</option>
             </select>
-            <button className="btn btn-success mt-3 text-center">Register</button>
+            {errors.subject?.type === 'required' && <p className='text-danger'>Subject is required</p>}
+            <button className="btn btn-success mt-3">Register</button>
         </form>
         
       </div>
