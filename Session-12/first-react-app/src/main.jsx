@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import { Store } from '../../../../Session-12/first-react-app/src/contexts/store.js';
+import { Store } from './contexts/store.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  //Strictmode make it to execute twice
+  // <React.StrictMode>
+  <Store>
     <App />
-  </React.StrictMode>,
+    </Store>
+  // </React.StrictMode>,
 )
