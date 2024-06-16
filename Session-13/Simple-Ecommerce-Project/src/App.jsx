@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import RootLayout from './RootLayout'
@@ -7,6 +6,7 @@ import Register from './components/register/Register'
 import Login from './components/login/Login'
 import About from './components/about/About'
 import RoutingError from './components/RoutingError'
+import UserProfile from './components/user-profile/UserProfile'
 
 function App() {
  
@@ -28,6 +28,9 @@ const browserRouter=createBrowserRouter([
       },{
       path:'about',
       element:<About/>
+     },{
+      path:'user-profile',
+      element:<UserProfile/>
      }
     ]
   }
