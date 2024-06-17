@@ -61,7 +61,7 @@ function Register() {
             <input type="text" {...register('image', { required: true })} className='form-control mb-3' id="url" />
             {errors.image?.type === 'required' && <p className="text-danger">URL is required</p>}
 
-            <button className="btn btn-info" type='submit'>Submit</button>
+            <button className="btn btn-info d-block mx-auto" type='submit'>Submit</button>
           </form>
         </div>
       </div>

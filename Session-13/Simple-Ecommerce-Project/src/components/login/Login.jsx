@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form'
 import { useContext,useState,useEffect } from 'react'
 import {userLoginContext} from '../../contexts/userLoginContext'
 import {useNavigate} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Login() {
 
@@ -67,10 +68,11 @@ function Login() {
             <p className="text-danger">Password is required</p> 
           }
 
-          <button className="btn btn-info" type='submit'>
+          <button className="btn btn-info d-block mx-auto" type='submit'>
               Login
           </button>
         </form>
+        <p className='text-center'>New User? <Link to="/register">Register</Link></p>
       </div>
     </div>
   </div>
