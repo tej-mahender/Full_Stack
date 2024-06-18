@@ -16,7 +16,7 @@ function Register() {
   async function onUserRegister(newUser){
     try{
     console.log(newUser)
-    let res=await fetch("http://localhost:3000/users",{
+    let res=await fetch("https://usersapi-mcsw.onrender.com/users",{
       method:'POST',
       headers:{"Content-type":"application/json"},
       body:JSON.stringify(newUser)

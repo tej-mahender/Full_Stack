@@ -7,7 +7,7 @@ function UserLoginStore({children}) {
     let [userLoginStatus,setUserLoginStatus]=useState(false)
 
     async function loginUser(userCred){
-        let res=await fetch(`http://localhost:3000/users?username=${userCred.username}&password=${userCred.password}`)
+        let res=await fetch(`https://usersapi-mcsw.onrender.com/users?username=${userCred.username}&password=${userCred.password}`)
         let data=await res.json()
         if(data.length!==0 &&data[0].username===userCred.username && data[0].password===userCred.password){
             setCurrentUser(data[0])
