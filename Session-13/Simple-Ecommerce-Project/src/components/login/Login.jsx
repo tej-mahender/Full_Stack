@@ -4,6 +4,8 @@ import { useContext,useState,useEffect } from 'react'
 import {userLoginContext} from '../../contexts/userLoginContext'
 import {useNavigate} from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { IoEyeOff } from "react-icons/io5";
+import { IoEye } from "react-icons/io5";
 
 function Login() {
 
@@ -13,7 +15,13 @@ function Login() {
 
     let navigate=useNavigate()
 
-     const [userLoginErr,setUserLoginErr]=useState('')
+    const [userLoginErr,setUserLoginErr]=useState('')
+
+    let [showPassword,setShowPassword]=useState(false)
+
+    const handlePassword=()=>{
+      setShowPassword(!showPassword)
+    }
 
 
    async function onUserLogin(userCred){
@@ -58,12 +66,17 @@ function Login() {
           <label htmlFor="" className='form-label'>
             Password
           </label>
+          <div className="d-flex">
           <input 
-            type="password" 
+            type={showPassword?"test":"password"} 
             className='form-control mb-3' 
             d="password" 
             {...register('password',{required:true})} 
             />
+            <button onClick={handlePassword} className='border-0 bg-light mb-3'>
+              {showPassword?<IoEye />:<IoEyeOff />}
+            </button>
+          </div>
           {errors.password?.type==='required'&& 
             <p className="text-danger">Password is required</p> 
           }
