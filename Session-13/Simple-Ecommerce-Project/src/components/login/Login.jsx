@@ -26,7 +26,7 @@ function Login() {
 
    async function onUserLogin(userCred){
    let res=await loginUser(userCred)
-   if(!res)
+   if(!userLoginStatus)
     setUserLoginErr('Invalid username or password')
   }
   useEffect(()=>{

@@ -16,7 +16,8 @@ function Register() {
   async function onUserRegister(newUser){
     try{
     console.log(newUser)
-    let res=await fetch("https://usersapi-pieg.onrender.com/users",{
+    // let res=await fetch("https://usersapi-pieg.onrender.com/users",{
+      let res=await fetch("http://localhost:3000/users",{
       method:'POST',
       headers:{"Content-type":"application/json"},
       body:JSON.stringify(newUser)

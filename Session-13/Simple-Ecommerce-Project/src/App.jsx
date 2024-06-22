@@ -7,6 +7,10 @@ import Login from './components/login/Login'
 import About from './components/about/About'
 import RoutingError from './components/RoutingError'
 import UserProfile from './components/user-profile/UserProfile'
+import Products from './components/products/Products'
+import Cart from './components/cart/Cart'
+import Edit from './components/edit/Edit'
+import { Navigate } from 'react-router-dom'
 
 function App() {
  
@@ -29,8 +33,25 @@ const browserRouter=createBrowserRouter([
       path:'about',
       element:<About/>
      },{
+      path:'edit',
+      element:<Edit/>
+     },{
       path:'user-profile',
-      element:<UserProfile/>
+      element:<UserProfile/>,
+      children:[
+        {
+          path:'products',
+          element:<Products/>
+        },{
+          path:'cart',
+          element:<Cart/>
+        },
+        // navigate to products page when path is
+        {
+          path:'',
+          element:<Navigate to={'products'}/>
+        }
+      ]
      }
     ]
   }
