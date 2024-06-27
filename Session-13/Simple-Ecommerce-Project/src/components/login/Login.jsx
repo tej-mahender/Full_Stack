@@ -74,7 +74,7 @@ function Login() {
             {...register('password',{required:true})} 
             />
             <button onClick={handlePassword} className='border-0 bg-light mb-3'>
-              {showPassword?<IoEye />:<IoEyeOff />}
+              {showPassword?<IoEyeoff />:<IoEye />}
             </button>
           </div>
           {errors.password?.type==='required'&& 

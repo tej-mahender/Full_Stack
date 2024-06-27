@@ -38,7 +38,7 @@ function Cart() {
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Price: ${item.price}</p>
-                <button className="btn bg-danger" onClick={()=>deleteItem(item.id)}>Delete</button>
+                <button className="btn btn-danger" onClick={()=>deleteItem(item.id)}>Delete</button>
                 </div>
               </div>
               </div>
