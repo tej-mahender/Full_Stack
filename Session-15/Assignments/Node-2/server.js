@@ -9,14 +9,14 @@ let products=[
     {id:3,name:"refrigerator",price:50000}
 ]
 
-app.get('/products',(req,res)=>{
+app.get('/GETproducts',(req,res)=>{
     res.send({
         message:"all products",
         payload: products
     })
 })
 
-app.get('/products/:id',(req,res)=>{
+app.get('/GETproduct/:id',(req,res)=>{
     let id=parseInt(req.params.id);
     let p=products.find((p)=>p.id===id);
     if(p===undefined){
@@ -32,7 +32,7 @@ app.get('/products/:id',(req,res)=>{
     }
 })
 
-app.put('/products/:id',(req,res)=>{
+app.put('/PUTproduct/:id',(req,res)=>{
     let id=parseInt(req.params.id);
     let p=req.body;
     let index=products.findIndex((product)=>product.id===id);
@@ -49,7 +49,7 @@ app.put('/products/:id',(req,res)=>{
     }
 })
 
-app.post('/products',(req,res)=>{
+app.post('/POSTproduct',(req,res)=>{
     let p=req.body;
     products.push(p);
     res.send({message: "product added",
@@ -57,7 +57,7 @@ app.post('/products',(req,res)=>{
     })
 })
 
-app.delete('/products/:id',(req,res)=>{
+app.delete('/DELETEproduct/:id',(req,res)=>{
     let id=parseInt(req.params.id);
     let index=products.findIndex((p)=>p.id===id);
     if(index===-1){
