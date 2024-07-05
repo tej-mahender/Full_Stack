@@ -32,7 +32,6 @@
 ![image](https://github.com/tej-mahender/Full_Stack/assets/148678239/224132cb-3af9-4c64-bfcf-0693f8cc2c85)
 
 5.  REQUEST :
-  
    http://localhost:3500/PUTproduct
    
    Content-Type: application/json
