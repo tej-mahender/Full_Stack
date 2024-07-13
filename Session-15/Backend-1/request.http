@@ -1,15 +1,26 @@
 get http://localhost:4000/user-api/users
 ### 
 
-get http://localhost:4000/user-api/users/20
+get http://localhost:4000/user-api/users/arjun
 
 ###
 post http://localhost:4000/user-api/user
 Content-Type: application/json
 
 {
-    "id":3,
-    "name":"Arjun"
+    "name":"Arjun",
+    "email":"arjun@gmail.com",
+    "password":"arjun",
+    "username":"arjun"
+}
+###
+
+post http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "username":"arjun",
+    "password":"arjun"
 }
 
 ###
@@ -52,3 +63,4 @@ Content-Type: application/json
 ###
 
 delete http://localhost:4000/product-api/DELETEproduct/3
+e
