@@ -3,35 +3,38 @@ const userApp = exp.Router();
 const {db}=require('mongodb')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const tokenVerify = require('../middlewares/tokenVerify')
+const expressAsyncHandler=require('express-async-handler')
 //app body parser middleware
 userApp.use(exp.json())
 
 //create sample rest api(req handlers-routes)
-//route for get users
-userApp.get('/users',async (req,res)=>{
+
+//route for get users (public route)
+userApp.get('/users',tokenVerify,expressAsyncHandler(async (req,res)=>{
     //get user collection obj
     const userCollection=req.app.get('users');
     //get users data from collection of DB
     let usersdata=await userCollection.find().toArray();
     //send users data to client
     res.send({message:"users", payload:usersdata})
-})
+}))
 
-//route to get specific user by id
-userApp.get('/users/:username', async(req,res)=>{
+//route to get specific user by username (protected route)
+userApp.get('/users/:username',tokenVerify,expressAsyncHandler(async(req,res)=>{
    //get userCollection obj
    const userCollection=req.app.get('users');
    //get id from url
    const usernameURL=req.params.username;
-   //find user by id
+   //find user by username
    let user=await userCollection.findOne({username:{$eq:{usernameURL}}});
    //send res
    res.send({message:"user",payload:user})
-})
+}))
 
 
-//route to post or create user
-userApp.post('/user',async (req,res)=>{
+//route to post or create user (public route)
+userApp.post('/user',expressAsyncHandler(async (req,res)=>{
     const userCollection=req.app.get('users');
     //get user data from req body
     const user=req.body;
@@ -51,9 +54,10 @@ userApp.post('/user',async (req,res)=>{
         res.send({message:"user created",payload:existUser})
     }
 
-})
+}))
 
-userApp.post('/login',async(req,res)=>{
+//user login or authentication (public route)
+userApp.post('/login',expressAsyncHandler(async(req,res)=>{
 
     const userCollection=req.app.get('users');
     //get user data from req body
@@ -73,21 +77,34 @@ userApp.post('/login',async(req,res)=>{
             //if passwords matched
             else{
                 //create JWT token
-            let signedToken=jwt.sign({username:user.username},'abcdef',{expiresIn:'20'})
+            let signedToken=jwt.sign({username:user.username},'abcdef',{expiresIn:'1h'})
             //send res
             res.send({message:"login success",token:signedToken,user:user})
             }
     }
-})
+}))
 
-//route to update user
-userApp.put('/user',async (req,res)=>{
+//route to update user (protected route)
+userApp.put('/user',tokenVerify,expressAsyncHandler(async (req,res)=>{
+    const userCollection=req.app.get('users');
+    //get modified user data from req body
+    let modified=req.body
+    //modify by username
+    let modifiedUser=await userCollection.updateOne({username:modified.username},{$set:{...modified}})
+    //send res
+    res.send({message:"user updated",payload:modifiedUser})
 
-})
+}))
 
-//route to delete user
-userApp.delete('/user/:id',async (req,res)=>{
-   
-})
+//route to delete user (protected route)
+userApp.delete('/user/:username',tokenVerify,expressAsyncHandler(async (req,res)=>{
+   const userCollection=req.app.get('users');
+   //get username from req params
+   let usernameURL=req.params.username
+   //delete by username
+   let deletedUser=await userCollection.deleteOne({username:usernameURL})
+   //send res
+   res.send({message:"user deleted",payload:deletedUser})
+}))
 
 module.exports = userApp;

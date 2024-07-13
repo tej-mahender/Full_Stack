@@ -29,3 +29,13 @@ const productApp = require('./APIs/productApi');
 //if path starts with user-api forward to userApp
 app.use('/user-api',userApp)
 app.use('/product-api',productApp)
+
+//handling invalid paths
+app.use('*',(req,res,next)=>{
+    res.send({message:`invalid path ${req.url}`})
+})
+
+//error handling middleware
+app.use((err,req,res,next)=>{
+    res.send({message:"error occured",errorMessage:err.message})
+})
