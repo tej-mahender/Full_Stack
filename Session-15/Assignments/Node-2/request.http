@@ -11,7 +11,7 @@ Content-Type: application/json
 get http://localhost:3500/GETproducts
 ###
 
-get http://localhost:3500/GETproduct/3
+get http://localhost:3500/GETproduct/5
 ###
 
 put http://localhost:3500/PUTproduct/4

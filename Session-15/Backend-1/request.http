@@ -1,10 +1,10 @@
-get http://localhost:4000/users
+get http://localhost:4000/user-api/users
 ### 
 
-get http://localhost:4000/users/20
+get http://localhost:4000/user-api/users/20
 
 ###
-post http://localhost:4000/user
+post http://localhost:4000/user-api/user
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###
-put http://localhost:4000/user
+put http://localhost:4000/user-api/user
 Content-Type: application/json
 
 {
@@ -22,4 +22,33 @@ Content-Type: application/json
 }
 
 ###
-delete http://localhost:4000/user/1
+delete http://localhost:4000/user-api/user/1
+
+###
+post http://localhost:4000/product-api/POSTproduct
+Content-Type: application/json
+
+{
+    "id":4,
+    "name":"AC",
+    "price": 1000
+}
+###
+
+get http://localhost:4000/product-api/GETproducts
+###
+
+get http://localhost:4000/product-api/GETproduct/5
+###
+
+put http://localhost:4000/product-api/PUTproduct/4
+Content-Type: application/json
+
+{
+    "id":4,
+    "name":"AC",
+    "price": 45000
+}
+###
+
+delete http://localhost:4000/product-api/DELETEproduct/3
