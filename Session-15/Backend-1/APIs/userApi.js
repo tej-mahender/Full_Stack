@@ -8,6 +8,7 @@ const expressAsyncHandler=require('express-async-handler')
 //app body parser middleware
 userApp.use(exp.json())
 
+require('dotenv').config();
 //create sample rest api(req handlers-routes)
 
 //route for get users (public route)
@@ -77,7 +78,7 @@ userApp.post('/login',expressAsyncHandler(async(req,res)=>{
             //if passwords matched
             else{
                 //create JWT token
-            let signedToken=jwt.sign({username:user.username},'abcdef',{expiresIn:'1h'})
+            let signedToken=jwt.sign({username:user.username},process.env.SECRET_KEY,{expiresIn:'1h'})
             //send res
             res.send({message:"login success",token:signedToken,user:user})
             }
@@ -105,6 +106,17 @@ userApp.delete('/user/:username',tokenVerify,expressAsyncHandler(async (req,res)
    let deletedUser=await userCollection.deleteOne({username:usernameURL})
    //send res
    res.send({message:"user deleted",payload:deletedUser})
+}))
+
+
+userApp.put('/add-to-cart/:username',expressAsyncHandler(async(req,res)=>{
+   //get user collection obj
+   const userCollection=req.app.get('users');
+    let usernameURL=req.params.username;
+    let productObj=req.body;
+   let result= await userCollection.updateOne({username:usernameURL},{$push:{products:productObj}})
+   console.log(result)
+   res.send({message:"product added to cart",payload:result})
 }))
 
 module.exports = userApp;

@@ -1,4 +1,5 @@
 const jwt=require('jsonwebtoken')
+require('dotenv').config()
 const tokenVerify=(req,res,next)=>{
     //get bearerToken frpm "headers" property of req object
     const bearerToken = req.headers.authorization
@@ -10,7 +11,7 @@ const tokenVerify=(req,res,next)=>{
     const token = bearerToken.split(' ')[1];
     //verify token
     try{
-    let decode=jwt.verify(token,'abcdef');
+    let decode=jwt.verify(token,process.env.SECRET_KEY);
     next();
     }catch(err){
         res.send({message:"token expired. Plz relogin"})

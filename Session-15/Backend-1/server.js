@@ -2,23 +2,32 @@
 const exp = require('express');
 const app=exp();
 
+
+require('dotenv').config()
+
+
 //import mongo client
 const {MongoClient}=require('mongodb');
-let mC=new MongoClient('mongodb://localhost:27017');
+let mC=new MongoClient(process.env.DB_URL);
 
 mC.connect()
 .then((connectionObj)=>{
     console.log("Connected to db")
 
     //connect to a database
-    const backend = connectionObj.db('backend_1')
+    const backend = connectionObj.db('pvpdb')
     //connect to a collection
     const users = backend.collection('users')
+    const products = backend.collection('products')
+    const cart = backend.collection('cart')
+    
     //share collection obj to APIs
     app.set('users',users)
+    app.set('products',products)
+    app.set('cart',cart)
 
     //assign port number to http server of express app
-    app.listen(4000,()=>console.log("http server started on port 4000"))
+    app.listen(process.env.PORT,()=>console.log("http server started on port 4000"))
 })
 .catch(err=>console.log(err))
 
