@@ -17,14 +17,20 @@ function Register() {
     try{
     console.log(newUser)
     // let res=await fetch("https://usersapi-pieg.onrender.com/users",{
-      let res=await fetch("http://localhost:3000/users",{
+      let res=await fetch("http://localhost:4000/user-api/user",{
       method:'POST',
       headers:{"Content-type":"application/json"},
       body:JSON.stringify(newUser)
     })
-    if(res.status===201){
+
+    let msg=await res.json()
+    console.log(msg)
+    if(msg.message==="user created"){
       navigate('/login')
     }
+    else{
+      setErr(msg.message)
+      }
   }
   catch(err){
     console.log(err)
