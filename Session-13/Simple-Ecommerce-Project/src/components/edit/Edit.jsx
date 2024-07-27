@@ -11,12 +11,15 @@ function Edit() {
 
   async function onsave(modifiedUser){
     console.log(modifiedUser)
-    let res=await fetch(`http://localhost:3000/users/${currentUser.id}`,{
+    let res=await fetch('http://localhost:4000/user-api/user',{
       method:'PUT',
       headers:{"Content-type":"application/json"},
       body:JSON.stringify(modifiedUser)
     })
-    if(res.status===200){
+    let data=await res.json()
+    console.log(data)
+
+    if(data.message='user updated'){
       modifiedUser.id=currentUser.id
       setCurrentUser(modifiedUser); 
       navigate('/user-profile')
@@ -31,7 +34,8 @@ function Edit() {
                 {...register('username',{required:true})} 
                 className='form-control mb-3' 
                 name="username" id="username" 
-                value={setValue("username",currentUser.username)} />
+                value={setValue("username",currentUser.username)} 
+                disabled />
              
              {/* {errors.username?.type==='required'&& <p className="text-danger">Username is required</p> } */}
 

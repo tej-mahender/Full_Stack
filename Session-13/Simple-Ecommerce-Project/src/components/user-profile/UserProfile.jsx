@@ -33,7 +33,9 @@ function UserProfile() {
       </li>
       <li className="nav-item">
        <Link to="cart" className="nav-link text-info">
-       <FaShoppingCart className='text-warning me-1' />Cart</Link>
+       <FaShoppingCart className='text-warning me-1' />Cart
+       <span className='badge bg-primary'></span>
+       </Link>
       </li>
       </ul>
       </div>

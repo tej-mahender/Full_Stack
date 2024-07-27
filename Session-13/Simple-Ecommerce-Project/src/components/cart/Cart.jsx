@@ -10,7 +10,7 @@ function Cart() {
   async function getUserCart(){
     let res=await fetch(`http://localhost:4000/user-api/cart/${currentUser.username}`)
     let data=await res.json()
-    console.log(data)
+    // console.log(data)
     setCart(data.payload.products)
   }
   useEffect(()=>{
@@ -18,11 +18,15 @@ function Cart() {
   },[])
 
   async function deleteItem(productid){
-    let res=await fetch(`http://localhost:4000/user-api/user-cart/${currentUser.username}/${productid}`, {
+    let res=await fetch(`http://localhost:4000/user-api/remove-from-cart/${currentUser.username}/${productid}`, {
         method:"DELETE",
       })
-        console.log(res);
-      getUserCart();
+      let data=await res.json()
+      // console.log(data)
+        // console.log(res);
+        if (data.message === "Product deleted from cart") {
+          getUserCart();
+        }
   }
 
   return (
@@ -35,6 +39,7 @@ function Cart() {
           <div className="col-sm-6 col-md-4 col-lg-3 mb-4" key={item.id}>
             <div className="card text-center h-100 mb-3" key={item.id}>
               <div className="card-body d-flex flex-column justify-content-between">
+              <img src={item.thumbnail} alt="" />
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{item.description}</p>
                 <p className="card-text">Price: ${item.price}</p>
