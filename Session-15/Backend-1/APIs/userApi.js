@@ -86,14 +86,14 @@ userApp.post('/login',expressAsyncHandler(async(req,res)=>{
 }))
 
 //route to update user (protected route)
-userApp.put('/user',tokenVerify,expressAsyncHandler(async (req,res)=>{
+userApp.put('/user',expressAsyncHandler(async (req,res)=>{
     const userCollection=req.app.get('users');
     //get modified user data from req body
     let modified=req.body
     //modify by username
-    let modifiedUser=await userCollection.updateOne({username:modified.username},{$set:{...modified}})
+    await userCollection.updateOne({username:modified.username},{$set:{...modified}})
     //send res
-    res.send({message:"user updated",payload:modifiedUser})
+    res.send({message:"user updated"})
 
 }))
 
@@ -108,26 +108,48 @@ userApp.delete('/user/:username',tokenVerify,expressAsyncHandler(async (req,res)
    res.send({message:"user deleted",payload:deletedUser})
 }))
 
+// //delete product fro user cart
+// userApp.delete('/user/:username/:productid', expressAsyncHandler(async (req, res) => {
+//     const userCollection = req.app.get('users');
+//     // Get username and productid from req params
+//     let usernameURL = req.params.username;
+//     //getting product obj from body
+//     let product=await req.body;
+//     //getting product id
+//     let productid=Number(product.product.id)
+//     //get product collections
+//     const products=req.app.get('products')
 
-userApp.delete('/user/:username/:productid', tokenVerify, expressAsyncHandler(async (req, res) => {
+//     let productDetails=await products.findOne({id:productid})   
+//     //delete by username and productid
+//     let deletedProduct=await userCollection.updateOne({username:usernameURL},{$pull:{cart:productDetails}})
+//     let cart=req.app.get('cart')
+//     let result=await cart.updateOne({usernameURL:username},{$pull:{productDetails}})    
+//     res.send({ message: "Product deleted from user", payload: result });
+// }));
+userApp.delete('/remove-from-cart/:username/:productid', expressAsyncHandler(async (req, res) => {
     const userCollection = req.app.get('users');
+
     // Get username and productid from req params
-    let usernameURL = req.params.username;
-    let productID = req.params.productid;
-    
-    // Find the user and update their products array to remove the specified product
-    let updatedUser = await userCollection.updateOne(
-        { username: usernameURL },
-        { $pull: { products: productID } } // Assuming products is an array of product IDs
+    let username = req.params.username;
+    let productid = Number(req.params.productid);
+
+    // Delete product from user's cart
+    let result = await userCollection.updateOne(
+        { username: username },
+        { $pull: { products: { id: productid } } }
     );
-    
-    // Check if any document was modified
-    if (updatedUser.modifiedCount > 0) {
-        res.send({ message: "Product deleted from user", payload: updatedUser });
-    } else {
-        res.status(404).send({ message: "Product not found or user not found" });
+
+    if (result.modifiedCount === 0) {
+        return res.status(404).send({ message: "Product not found in cart" });
     }
+
+    res.send({
+        message: "Product deleted from cart",
+        payload: result
+    });
 }));
+
 
 userApp.put('/add-to-cart/:username',expressAsyncHandler(async(req,res)=>{
    //get user collection obj
