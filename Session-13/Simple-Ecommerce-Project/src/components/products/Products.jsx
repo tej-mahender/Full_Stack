@@ -8,9 +8,9 @@ function Products() {
 
   let [products,setProducts]=useState([])
   async function getProducts(){
-    let res=await fetch('http://localhost:3000/products')
+    let res=await fetch('http://localhost:4000/product-api/products')
     let productData=await res.json()
-    setProducts(productData)
+    setProducts(productData.payload)
   }
   useEffect(()=>{
     getProducts()

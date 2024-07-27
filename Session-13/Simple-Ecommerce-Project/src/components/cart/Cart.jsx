@@ -4,34 +4,34 @@ import { userLoginContext } from '../../contexts/userLoginContext';
 
 function Cart() {
   const { currentUser } = useContext(userLoginContext);
-  const [cartItems, setCartItems] = useState([]);
+  let [cart,setCart]=useState([])
 
-  async function getCart() {
-      let res = await fetch(`http://localhost:3000/user-cart?username=${currentUser.username}`);
-      let data = await res.json();
-      setCartItems(data);
-    } 
+  //get latest cart
+  async function getUserCart(){
+    let res=await fetch(`http://localhost:4000/user-api/cart/${currentUser.username}`)
+    let data=await res.json()
+    console.log(data)
+    setCart(data.payload.products)
+  }
+  useEffect(()=>{
+    getUserCart()
+  },[])
 
   async function deleteItem(productid){
-    console.log("deleting",productid)
-    let res=await fetch(`http://localhost:3000/user-cart/${productid}`, {
+    let res=await fetch(`http://localhost:4000/user-api/user-cart/${currentUser.username}/${productid}`, {
         method:"DELETE",
       })
         console.log(res);
-      getCart();
+      getUserCart();
   }
-
-  useEffect(() => {
-    getCart();
-  }, []);
 
   return (
     <div>
-      {cartItems.length === 0 ? (
+      {cart.length === 0 ? (
         <p className="text-center">Cart is empty</p>
       ) : (
         <div className="cart-container row">
-          {cartItems.map((item) => (
+          {cart.map((item) => (
           <div className="col-sm-6 col-md-4 col-lg-3 mb-4" key={item.id}>
             <div className="card text-center h-100 mb-3" key={item.id}>
               <div className="card-body d-flex flex-column justify-content-between">

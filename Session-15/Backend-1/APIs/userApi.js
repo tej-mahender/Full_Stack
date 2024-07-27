@@ -49,6 +49,7 @@ userApp.post('/user',expressAsyncHandler(async (req,res)=>{
         let hashPass=await bcryptjs.hash(user.password,7)
         //replace pass with Hashpass
         user.password=hashPass;
+        user.products=[];
         //save user
         await userCollection.insertOne(user)
         //send res
@@ -59,7 +60,6 @@ userApp.post('/user',expressAsyncHandler(async (req,res)=>{
 
 //user login or authentication (public route)
 userApp.post('/login',expressAsyncHandler(async(req,res)=>{
-
     const userCollection=req.app.get('users');
     //get user data from req body
     const user=req.body;
@@ -109,6 +109,26 @@ userApp.delete('/user/:username',tokenVerify,expressAsyncHandler(async (req,res)
 }))
 
 
+userApp.delete('/user/:username/:productid', tokenVerify, expressAsyncHandler(async (req, res) => {
+    const userCollection = req.app.get('users');
+    // Get username and productid from req params
+    let usernameURL = req.params.username;
+    let productID = req.params.productid;
+    
+    // Find the user and update their products array to remove the specified product
+    let updatedUser = await userCollection.updateOne(
+        { username: usernameURL },
+        { $pull: { products: productID } } // Assuming products is an array of product IDs
+    );
+    
+    // Check if any document was modified
+    if (updatedUser.modifiedCount > 0) {
+        res.send({ message: "Product deleted from user", payload: updatedUser });
+    } else {
+        res.status(404).send({ message: "Product not found or user not found" });
+    }
+}));
+
 userApp.put('/add-to-cart/:username',expressAsyncHandler(async(req,res)=>{
    //get user collection obj
    const userCollection=req.app.get('users');
@@ -119,4 +139,11 @@ userApp.put('/add-to-cart/:username',expressAsyncHandler(async(req,res)=>{
    res.send({message:"product added to cart",payload:result})
 }))
 
+//get latest cart
+userApp.get('/cart/:username',expressAsyncHandler(async(req,res)=>{
+    const userCollection=req.app.get("users")
+    let usernameURL=req.params.username;
+    let cart= await userCollection.findOne({username:usernameURL})
+    res.send({message:"cart",payload:cart})
+}))
 module.exports = userApp;
